@@ -35,19 +35,40 @@ class CreateNewFacility:
     # Navigate to Facility Page
     driver.get("https://care.coronasafe.in/facility/create")
     time.sleep(5)
-    # Input
-    # Wait for the dropdown
-    dropdown_menu = WebDriverWait(driver, 20).until(
+    # Wait for the dropdown - Facility Type
+    facility_dropdown_menu = WebDriverWait(driver, 20).until(
         EC.element_to_be_clickable((By.ID, "headlessui-listbox-button-:r1:"))
     )
-    dropdown_menu.click()
-
-    # Wait for the options to appear
+    facility_dropdown_menu.click()
+    # Wait for the options to appear - Facility Type
     options = WebDriverWait(driver, 20).until(
         EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
     )
-
-    # Click the fourth option
+    # Click the fourth option - Facility Type
     option_four = options[3]
     option_four.click()
-    time.sleep(10)
+    time.sleep(4)
+    #
+    # Facility Name
+    Facility_Name = driver.find_element(By.NAME, "name")
+    Facility_Name.send_keys("Selenium")
+    time.sleep(4)
+    #Features
+    #Pincode
+    Facility_pincode = driver.find_element(By.NAME, "pincode")
+    Facility_pincode.send_keys("682011")
+    time.sleep(4)
+    #State
+    #District
+    #Local Body
+    #Ward
+    #Address
+    Facility_address = driver.find_element(By.NAME, "address")
+    Facility_address.send_keys("kasaragod,kerala,india")
+    time.sleep(4)
+    #Emergency
+    Facility_emergency_number = driver.find_element(By.NAME, "phone_number")
+    Facility_emergency_number.send_keys("9999999999")
+    time.sleep(4)
+    #Cylindar
+    #Location
