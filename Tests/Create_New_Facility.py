@@ -169,9 +169,9 @@ class CreateNewFacility:
 
     # Bed Type
     bedtype_menu = WebDriverWait(driver, 20).until(
-        EC.element_to_be_clickable((By.ID, "headlessui-listbox-button-:r9l:"))
+        EC.element_to_be_clickable((By.ID,"bed-type"))
     )
-    ward_dropdown_menu.click()
+    bedtype_menu.click()
     # Wait for the options to appear - bedtype
     options = WebDriverWait(driver, 20).until(
         EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
@@ -202,7 +202,7 @@ class CreateNewFacility:
 
     #Area Of Specialisation
     area_menu = WebDriverWait(driver, 20).until(
-        EC.element_to_be_clickable((By.ID, "headlessui-listbox-button-:rb7:"))
+        EC.element_to_be_clickable((By.ID, "area-of-specialization"))
     )
     area_menu.click()
     # Wait for the options to appear - bedtype
