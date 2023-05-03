@@ -43,10 +43,13 @@ class TestPositiveScenarios:
         assert actual_url == "https://care.coronasafe.in/facility"
         time.sleep(5)
 
-        # verify button logout
+        # Push logout button
 
         logout_button = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[2]/nav/div[3]/div[4]/div[2]/div[2]/p")
         logout_button.click()
         time.sleep(5)
 
-        # assert logout_button.is_displayed()
+        # verify logout is completed()
+
+        actual_url = driver.current_url
+        assert actual_url == "https://care.coronasafe.in/"
