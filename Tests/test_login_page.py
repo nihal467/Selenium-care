@@ -53,3 +53,4 @@ class TestPositiveScenarios:
 
         actual_url = driver.current_url
         assert actual_url == "https://care.coronasafe.in/"
+
