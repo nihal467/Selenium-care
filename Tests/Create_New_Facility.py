@@ -162,5 +162,67 @@ class CreateNewFacility:
 
     #enter submit button
     facility_submit_button = driver.find_element(By.ID, "submit")
-    facility_submit_button()
+    facility_submit_button.click()
+    time.sleep(5)
+
+    #-----------------------------------------Section 2 ---------------------------------------------------
+
+    # Bed Type
+    bedtype_menu = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.ID, "headlessui-listbox-button-:r9l:"))
+    )
+    ward_dropdown_menu.click()
+    # Wait for the options to appear - bedtype
+    options = WebDriverWait(driver, 20).until(
+        EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
+    )
+    # Click the second option - bedtype type
+    option_two = options[3]
+    option_two.click()
+    time.sleep(4)
+
+    # Total Capacity
+    bed_total_capacity = driver.find_element(By.NAME, "totalCapacity")
+    bed_total_capacity.send_keys("121")
+    time.sleep(4)
+
+    # Currently Occupied
+
+    bed_currently_occupied = driver.find_element(By.NAME, "currentOccupancy")
+    bed_currently_occupied.send_keys("100")
+    time.sleep(4)
+
+    # Submit Save Bed Capacity
+
+    save_bed_capacity = driver.find_element(By.ID, "bed-capacity-save-and-exit")
+    save_bed_capacity.click()
+    time.sleep(5)
+
+ #-----------------------------------------Section 3 ---------------------------------------------------
+
+    #Area Of Specialisation
+    area_menu = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.ID, "headlessui-listbox-button-:rb7:"))
+    )
+    area_menu.click()
+    # Wait for the options to appear - bedtype
+    options = WebDriverWait(driver, 20).until(
+        EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
+    )
+
+    # Click the second option - bedtype type
+    option_two = options[3]
+    option_two.click()
+    time.sleep(4)
+
+    #Count
+
+    area_count = driver.find_element(By.NAME, "count")
+    area_count.send_keys("100")
+    time.sleep(4)
+
+    # Submit Specialisation Count
+
+    save_area = driver.find_element(By.ID, "save-and-exit")
+    save_area.click()
     time.sleep(5)
