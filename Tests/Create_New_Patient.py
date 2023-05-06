@@ -5,7 +5,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
-
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class TestCreateNewPatient:
     # This method is used to create a new patient
@@ -108,12 +109,63 @@ class TestCreateNewPatient:
         time.sleep(3)
         patient_dob.click()
 
+        gender_dropdown_menu = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.ID, 'headlessui-listbox-button-:r4:'))
+        )
+        gender_dropdown_menu.click()
+        # Wait for the options to appear - State type
+        options = WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
+        )
+        # Click the first option - State type
+        option_one = options[0]
+        option_one.click()
+        time.sleep(3)
+
+        current_address=driver.find_element(By.NAME,"address")
+        current_address.send_keys("kasaragod, kerala, india")
+
+        pincode_address=driver.find_element(By.ID,"pincode")
+        pincode_address.send_keys("682001")
 
 
+        local_dropdown_menu = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.ID, "headlessui-listbox-button-:r1c:"))
+        )
+        local_dropdown_menu.click()
+        # Wait for the options to appear - State type
+        options = WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
+        )
+        # Click the first option - State type
+        option_one = options[0]
+        option_one.click()
+        time.sleep(3)
+
+        medical_history=driver.find_element(By.NAME,"medical_history_check_1")
+        medical_history.click()
 
 
+        bloodgroup_dropdown_menu = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.ID, "headlessui-listbox-button-:re:"))
+        )
+        bloodgroup_dropdown_menu.click()
+        # Wait for the options to appear - State type
+        options = WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
+        )
+        # Click the first option - State type
+        option_one = options[0]
+        option_one.click()
+        time.sleep(3)
 
         # Save the patient details
+
+        add_patient_button=driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[5]/button[1]")
+        add_patient_button.click()
+        time.sleep(3)
+
+
         # Create a new consultation for the patient
         # Create a go to the patient consultation page
         # Verify the redirection URL
