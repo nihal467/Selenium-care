@@ -64,6 +64,7 @@ class CreateNewPatient:
     time.sleep(3)
 
     # Click the pop-up and select the selenium facility
+
     # Fill the Patient Form
     # Save the patient details
     # Create a new consultation for the patient
