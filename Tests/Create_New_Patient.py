@@ -100,10 +100,16 @@ class TestCreateNewPatient:
         time.sleep(3)
         patient_dob_backbutton.click()
         time.sleep(3)
-        patient_dob_year_select = driver.find_element(By.XPATH,"//*[@id="year-7"]")
+        patient_dob_year_select = driver.find_element(By.XPATH,'//*[@id="year-7"]')
+        patient_dob_year_select.click()
         time.sleep(3)
-        patient_dob_month = driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[1]/div/div/div[1]")
-        patient_dob_month.click()
+        patient_dob_day=driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[3]/div[25]/div")
+        patient_dob_day.click()
+        time.sleep(3)
+        patient_dob.click()
+
+
+
 
 
 
@@ -111,4 +117,3 @@ class TestCreateNewPatient:
         # Create a new consultation for the patient
         # Create a go to the patient consultation page
         # Verify the redirection URL
-
