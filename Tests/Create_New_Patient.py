@@ -9,8 +9,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 class TestCreateNewPatient:
     # This method is used to create a new patient
-    @pytest.mark.createpatient
-    def Create_Patient(self):
+    #@pytest.mark.createpatient
+    #def Create_Patient(self):
 
         # Initialize Chrome driver
         driver = webdriver.Chrome(
@@ -63,11 +63,50 @@ class TestCreateNewPatient:
         add_patient_details=driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/div[2]/button[2]")
         add_patient_details.click()
         time.sleep(3)
-        driver.quit()
 
         # Click the pop-up and select the selenium facility
 
         # Fill the Patient Form
+        # --------------------------------
+
+        patient_phone_number = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[1]/div/div/div/div/input")
+        patient_phone_number.send_keys("9999999999")
+        time.sleep(10)
+
+        patient_pop_up= driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div[3]/div[2]/label")
+        patient_pop_up.click()
+        time.sleep(3)
+
+        patient_pop_up_submit=driver.find_element(By.ID,"submit")
+        patient_pop_up_submit.click()
+        time.sleep(3)
+
+        patient_emergency_number = driver.find_element(By.NAME,"emergency_phone_number")
+        patient_emergency_number.send_keys("9999999999")
+        time.sleep(3)
+
+        patient_name = driver.find_element(By.NAME,"name")
+        patient_name.send_keys("Selenium-patient")
+        time.sleep(3)
+
+        patient_dob= driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/button/input[2]")
+        patient_dob.click()
+        time.sleep(3)
+        patient_dob_year = driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[1]/div/div/div[2]")
+        patient_dob_year.click()
+        time.sleep(3)
+        patient_dob_backbutton =driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[1]/div/button[1]")
+        patient_dob_backbutton.click()
+        time.sleep(3)
+        patient_dob_backbutton.click()
+        time.sleep(3)
+        patient_dob_year_select = driver.find_element(By.XPATH,"//*[@id="year-7"]")
+        time.sleep(3)
+        patient_dob_month = driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[1]/div/div/div[1]")
+        patient_dob_month.click()
+
+
+
         # Save the patient details
         # Create a new consultation for the patient
         # Create a go to the patient consultation page
