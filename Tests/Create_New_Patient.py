@@ -109,15 +109,15 @@ class TestCreateNewPatient:
         time.sleep(3)
         patient_dob.click()
 
-        gender_dropdown_menu = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.ID, 'headlessui-listbox-button-:r4:'))
+        gendar_dropdown_menu = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.ID, 'gender-div'))
         )
-        gender_dropdown_menu.click()
-        # Wait for the options to appear - State type
+        gendar_dropdown_menu.click()
+        # Wait for the options to appear - gendar type
         options = WebDriverWait(driver, 20).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
         )
-        # Click the first option - State type
+        # Click the first option - gendar type
         option_one = options[0]
         option_one.click()
         time.sleep(3)
@@ -127,13 +127,14 @@ class TestCreateNewPatient:
 
         pincode_address=driver.find_element(By.ID,"pincode")
         pincode_address.send_keys("682001")
+        time.sleep(3)
 
 
         local_dropdown_menu = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.ID, "headlessui-listbox-button-:r1c:"))
+            EC.element_to_be_clickable((By.ID, "local_body"))
         )
         local_dropdown_menu.click()
-        # Wait for the options to appear - State type
+        # Wait for the options to appear - local type
         options = WebDriverWait(driver, 20).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
         )
@@ -147,7 +148,7 @@ class TestCreateNewPatient:
 
 
         bloodgroup_dropdown_menu = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.ID, "headlessui-listbox-button-:re:"))
+            EC.element_to_be_clickable((By.ID, "blood_group-div"))
         )
         bloodgroup_dropdown_menu.click()
         # Wait for the options to appear - State type
