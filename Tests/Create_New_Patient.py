@@ -10,8 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class TestCreateNewPatient:
     # This method is used to create a new patient
-    #@pytest.mark.createpatient
-    #def Create_Patient(self):
+    @pytest.mark.createpatient
+    def Create_Patient(self):
 
         # Initialize Chrome driver
         driver = webdriver.Chrome(
