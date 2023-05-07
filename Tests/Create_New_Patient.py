@@ -196,14 +196,16 @@ class TestCreateNewPatient:
         option_one.click()
         time.sleep(3)
 
+        symptoms_outside=driver.find_element(By.ID,"symptoms")
+        symptoms_outside.click()
+        time.sleep(3)
+
         ipnumber=driver.find_element(By.ID,"ip_no")
         ipnumber.send_keys("192.168.1.1")
+        time.sleep(3)
 
         #Diagnosis
 
-        provisional=driver.find_element(By.ID,"icd11_provisional_diagnoses_object")
-        provisional.send_keys("1A")
-        time.sleep(3)
         provisional_dropdown_menu = WebDriverWait(driver, 20).until(
             EC.element_to_be_clickable((By.ID, "icd11_provisional_diagnoses_object"))
         )
@@ -225,9 +227,11 @@ class TestCreateNewPatient:
 
         general_instructions=driver.find_element(By.ID,"consultation_notes")
         general_instructions.send_keys("General advice")
+        time.sleep(3)
 
         verified_by=driver.find_element(By.ID,"verified_by")
         verified_by.send_keys("Dr Selenium")
+        time.sleep(3)
 
         # Create a go to the patient consultation page
 
