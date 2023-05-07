@@ -8,14 +8,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class TestCreateNewPatient:
     # This method is used to create a new patient
-    @pytest.mark.createpatient
-    def Create_Patient(self):
-
+    @pytest.mark.createnewpatient
+    def test_create_patient(self): # def should start with test for the pytest to detect it
         # Initialize Chrome driver
-        driver = webdriver.Chrome(
-            service=ChromeService(ChromeDriverManager().install()))  # This line initializes the driver
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))  # This line initializes the driver
         time.sleep(3)  # This line adds a delay of 3 seconds to the script execution
 
         # Go to the webpage
@@ -42,26 +41,28 @@ class TestCreateNewPatient:
 
         # Search for Facility
 
-        facility_search= driver.find_element(By.NAME, "search")
+        facility_search = driver.find_element(By.NAME, "search")
         facility_search.click()
         facility_search.send_keys("Selenium")
         time.sleep(3)
 
         # Go Inside a facility page start with selenium
 
-        facility_view= driver.find_element(By.ID,"facility-details")
+        facility_view = driver.find_element(By.ID, "facility-details")
         facility_view.click()
         time.sleep(3)
 
         # Click Manage Patient
 
-        patient_view=driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[3]/div/div[2]/div[2]/button[3]")
+        patient_view = driver.find_element(By.XPATH,
+                                           "/html/body/div[1]/div/div[3]/main/div/div/div[3]/div/div[2]/div[2]/button[3]")
         patient_view.click()
         time.sleep(3)
 
         # Click Add patient button in the patient tab
 
-        add_patient_details=driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/div[2]/button[2]")
+        add_patient_details = driver.find_element(By.XPATH,
+                                                  "/html/body/div[1]/div/div[3]/main/div/div/div[2]/div[2]/button[2]")
         add_patient_details.click()
         time.sleep(3)
 
@@ -70,41 +71,47 @@ class TestCreateNewPatient:
         # Fill the Patient Form
         # --------------------------------
 
-        patient_phone_number = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[1]/div/div/div/div/input")
+        patient_phone_number = driver.find_element(By.XPATH,
+                                                   "/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[1]/div/div/div/div/input")
         patient_phone_number.send_keys("9999999999")
         time.sleep(10)
 
-        patient_pop_up= driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div[3]/div[2]/label")
+        patient_pop_up = driver.find_element(By.XPATH,
+                                             "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div[3]/div[2]/label")
         patient_pop_up.click()
         time.sleep(3)
 
-        patient_pop_up_submit=driver.find_element(By.ID,"submit")
+        patient_pop_up_submit = driver.find_element(By.ID, "submit")
         patient_pop_up_submit.click()
         time.sleep(3)
 
-        patient_emergency_number = driver.find_element(By.NAME,"emergency_phone_number")
+        patient_emergency_number = driver.find_element(By.NAME, "emergency_phone_number")
         patient_emergency_number.send_keys("9999999999")
         time.sleep(3)
 
-        patient_name = driver.find_element(By.NAME,"name")
+        patient_name = driver.find_element(By.NAME, "name")
         patient_name.send_keys("Selenium-patient")
         time.sleep(3)
 
-        patient_dob= driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/button/input[2]")
+        patient_dob = driver.find_element(By.XPATH,
+                                          "/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/button/input[2]")
         patient_dob.click()
         time.sleep(3)
-        patient_dob_year = driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[1]/div/div/div[2]")
+        patient_dob_year = driver.find_element(By.XPATH,
+                                               "/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[1]/div/div/div[2]")
         patient_dob_year.click()
         time.sleep(3)
-        patient_dob_backbutton =driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[1]/div/button[1]")
+        patient_dob_backbutton = driver.find_element(By.XPATH,
+                                                     "/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[1]/div/button[1]")
         patient_dob_backbutton.click()
         time.sleep(3)
         patient_dob_backbutton.click()
         time.sleep(3)
-        patient_dob_year_select = driver.find_element(By.XPATH,'//*[@id="year-7"]')
+        patient_dob_year_select = driver.find_element(By.XPATH, '//*[@id="year-7"]')
         patient_dob_year_select.click()
         time.sleep(3)
-        patient_dob_day=driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[3]/div[25]/div")
+        patient_dob_day = driver.find_element(By.XPATH,
+                                              "/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[1]/div/div/div[4]/div/div/div/div/div/div/div/div[3]/div[25]/div")
         patient_dob_day.click()
         time.sleep(3)
         patient_dob.click()
@@ -122,13 +129,12 @@ class TestCreateNewPatient:
         option_one.click()
         time.sleep(3)
 
-        current_address=driver.find_element(By.NAME,"address")
+        current_address = driver.find_element(By.NAME, "address")
         current_address.send_keys("kasaragod, kerala, india")
 
-        pincode_address=driver.find_element(By.ID,"pincode")
+        pincode_address = driver.find_element(By.ID, "pincode")
         pincode_address.send_keys("682001")
         time.sleep(3)
-
 
         local_dropdown_menu = WebDriverWait(driver, 20).until(
             EC.element_to_be_clickable((By.ID, "local_body"))
@@ -143,9 +149,8 @@ class TestCreateNewPatient:
         option_one.click()
         time.sleep(3)
 
-        medical_history=driver.find_element(By.NAME,"medical_history_check_1")
+        medical_history = driver.find_element(By.NAME, "medical_history_check_1")
         medical_history.click()
-
 
         bloodgroup_dropdown_menu = WebDriverWait(driver, 20).until(
             EC.element_to_be_clickable((By.ID, "blood_group-div"))
@@ -162,7 +167,8 @@ class TestCreateNewPatient:
 
         # Save the patient details
 
-        add_patient_button=driver.find_element(By.XPATH,"/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[5]/button[1]")
+        add_patient_button = driver.find_element(By.XPATH,
+                                                 "/html/body/div[1]/div/div[3]/main/div/div/div[2]/form/div[5]/button[1]")
         add_patient_button.click()
         time.sleep(3)
 
@@ -182,7 +188,6 @@ class TestCreateNewPatient:
         option_one.click()
         time.sleep(3)
 
-
         symptoms_dropdown_menu = WebDriverWait(driver, 20).until(
             EC.element_to_be_clickable((By.ID, "symptoms"))
         )
@@ -196,11 +201,11 @@ class TestCreateNewPatient:
         option_one.click()
         time.sleep(3)
 
-        symptoms_outside=driver.find_element(By.ID,"symptoms")
+        symptoms_outside = driver.find_element(By.ID, "symptoms")
         symptoms_outside.click()
         time.sleep(3)
 
-        ipnumber=driver.find_element(By.ID,"ip_no")
+        ipnumber = driver.find_element(By.ID, "ip_no")
         ipnumber.send_keys("192.168.1.1")
         time.sleep(3)
 
@@ -229,17 +234,17 @@ class TestCreateNewPatient:
         # Click the first option
         options[2].click()
 
-        diagnosis_outside=driver.find_element(By.ID,"diagnosis")        # a blank click outside to close the droplist
+        diagnosis_outside = driver.find_element(By.ID, "diagnosis")  # a blank click outside to close the droplist
         diagnosis_outside.click()
         time.sleep(3)
 
-        #Treatment Plan
+        # Treatment Plan
 
-        general_instructions=driver.find_element(By.ID,"consultation_notes")
+        general_instructions = driver.find_element(By.ID, "consultation_notes")
         general_instructions.send_keys("General advice")
         time.sleep(3)
 
-        verified_by=driver.find_element(By.ID,"verified_by")
+        verified_by = driver.find_element(By.ID, "verified_by")
         verified_by.send_keys("Dr Selenium")
         time.sleep(3)
 
@@ -249,4 +254,5 @@ class TestCreateNewPatient:
         create_consultation_button.click()
         time.sleep(5)
 
+        driver.quit()  # Always this in the end for the driver to work properly
         # Verify the redirection URL
