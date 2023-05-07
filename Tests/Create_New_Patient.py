@@ -138,7 +138,7 @@ class TestCreateNewPatient:
         options = WebDriverWait(driver, 20).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
         )
-        # Click the first option - State type
+        # Click the first option - local type
         option_one = options[0]
         option_one.click()
         time.sleep(3)
@@ -151,11 +151,11 @@ class TestCreateNewPatient:
             EC.element_to_be_clickable((By.ID, "blood_group-div"))
         )
         bloodgroup_dropdown_menu.click()
-        # Wait for the options to appear - State type
+        # Wait for the options to appear - bloodgroup type
         options = WebDriverWait(driver, 20).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
         )
-        # Click the first option - State type
+        # Click the first option - Bloodgroup type
         option_one = options[0]
         option_one.click()
         time.sleep(3)
@@ -166,7 +166,73 @@ class TestCreateNewPatient:
         add_patient_button.click()
         time.sleep(3)
 
+        # Create a new consultation for the patient as out-patient
+        # Consultation Details
 
-        # Create a new consultation for the patient
+        status_during_consultation_dropdown_menu = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.ID, "consultation_status"))
+        )
+        status_during_consultation_dropdown_menu.click()
+        # Wait for the options to appear - status during consultation type
+        options = WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
+        )
+        # Click the 5th option - status during consultation type
+        option_one = options[4]
+        option_one.click()
+        time.sleep(3)
+
+
+        symptoms_dropdown_menu = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.ID, "symptoms"))
+        )
+        symptoms_dropdown_menu.click()
+        # Wait for the options to appear - symptoms
+        options = WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
+        )
+        # Click the 1st option - Symptoms
+        option_one = options[0]
+        option_one.click()
+        time.sleep(3)
+
+        ipnumber=driver.find_element(By.ID,"ip_no")
+        ipnumber.send_keys("192.168.1.1")
+
+        #Diagnosis
+
+        provisional=driver.find_element(By.ID,"icd11_provisional_diagnoses_object")
+        provisional.send_keys("1A")
+        time.sleep(3)
+        provisional_dropdown_menu = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.ID, "icd11_provisional_diagnoses_object"))
+        )
+        provisional_dropdown_menu.click()
+        # Wait for the options to appear - provisional
+        options = WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
+        )
+        # Click the 1st option - provisional
+        option_one = options[0]
+        option_one.click()
+        time.sleep(3)
+
+        diagnosis_outside=driver.find_element(By.ID,"diagnosis")        # a blank click outside to close the droplist
+        diagnosis_outside.click()
+        time.sleep(3)
+
+        #Treatment Plan
+
+        general_instructions=driver.find_element(By.ID,"consultation_notes")
+        general_instructions.send_keys("General advice")
+
+        verified_by=driver.find_element(By.ID,"verified_by")
+        verified_by.send_keys("Dr Selenium")
+
         # Create a go to the patient consultation page
+
+        create_consultation_button = driver.find_element(By.ID, "submit")
+        create_consultation_button.click()
+        time.sleep(5)
+
         # Verify the redirection URL
