@@ -204,20 +204,30 @@ class TestCreateNewPatient:
         ipnumber.send_keys("192.168.1.1")
         time.sleep(3)
 
-        #Diagnosis
+        # Diagnosis - since its headless UI dropdown, we should check input field inside iframe
 
-        provisional_dropdown_menu = WebDriverWait(driver, 20).until(
+        Provisional = WebDriverWait(driver, 20).until(
             EC.element_to_be_clickable((By.ID, "icd11_provisional_diagnoses_object"))
         )
-        provisional_dropdown_menu.click()
-        # Wait for the options to appear - provisional
-        options = WebDriverWait(driver, 20).until(
-            EC.visibility_of_all_elements_located((By.XPATH, "//ul[@role='listbox']/li[@role='option']"))
+        Provisional.click()
+        time.sleep(5)
+        # Switch to the iframe if it exists
+        iframe = driver.find_elements(By.TAG_NAME, 'iframe')
+        if iframe:
+            driver.switch_to.frame(iframe[0])
+        # Find the input field
+        input_field = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, '//input[@placeholder="Select"]'))
         )
-        # Click the 1st option - provisional
-        option_one = options[0]
-        option_one.click()
-        time.sleep(3)
+        # Enter text into the input field
+        input_field.send_keys('1A')
+        time.sleep(5)
+        # Wait for the options to appear
+        options = WebDriverWait(driver, 10).until(
+            EC.visibility_of_all_elements_located((By.XPATH, '//ul[@role="listbox"]/li'))
+        )
+        # Click the first option
+        options[2].click()
 
         diagnosis_outside=driver.find_element(By.ID,"diagnosis")        # a blank click outside to close the droplist
         diagnosis_outside.click()
